@@ -16,24 +16,37 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	public void gutterGame() {
+	public void whenNoPinsWereKnockedOver_theScoreIsZero() {
 		rollMany(20, 0);
 		assertThat(game.score()).as("Expect the game score to be zero if no pins were rolled over").isEqualTo(0);
 	}
 
 	@Test
-	void allOnes() {
+	void whenNoSpecialEventsHappen_theScoreIsTheSumOfAllKnockedOverPins() {
 		rollMany(20, 1);
 		assertThat(game.score()).isEqualTo(20);
 	}
 
 	@Test
-	void oneSpare() {
-		game.roll(5);
-		game.roll(5); //spare
+	void whenSpareIsRolled_theBonusIsTheNextRollPins() {
+		rollSpare();
 		game.roll(3);
 		rollMany(17, 0);
 		assertThat(game.score()).isEqualTo(16);
+	}
+
+	@Test
+	void whenStrikeIsRolled_theBonusIsTheNextFramePins() {
+		game.roll(10);
+		game.roll(3);
+		game.roll(4);
+		rollMany(17, 0);
+		assertThat(game.score()).isEqualTo(24);
+	}
+
+	private void rollSpare() {
+		game.roll(3);
+		game.roll(7);
 	}
 
 	private void rollMany(int amountOfRolls, int pinsToRollOnEachTurn) {
