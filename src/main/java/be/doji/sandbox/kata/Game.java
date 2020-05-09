@@ -2,13 +2,18 @@ package be.doji.sandbox.kata;
 
 public class Game {
 
-	private int score = 0;
+	private final int[] rolls = new int[21];
+	private int currentRoll = 0;
 
 	public void roll(int pinsRolledOver) {
-		score += pinsRolledOver;
+		rolls[currentRoll++] = pinsRolledOver;
 	}
 
 	public int score() {
-		return this.score;
+		int score = 0;
+		for(int i = 0; i < rolls.length; i++) {
+			score += rolls[i];
+		}
+		return score;
 	}
 }
