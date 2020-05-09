@@ -28,7 +28,6 @@ public class BowlingGameTest {
 	}
 
 	@Test
-	@Disabled("Test brought out design flaw. Redesigning system before enabling test")
 	void oneSpare() {
 		game.roll(5);
 		game.roll(5); //spare

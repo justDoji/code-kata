@@ -11,8 +11,11 @@ public class Game {
 
 	public int score() {
 		int score = 0;
-		for(int i = 0; i < rolls.length; i++) {
-			score += rolls[i];
+		int rollCounter = 0;
+		for(int frame = 0; frame < 10; frame++) {
+			int frameScore = rolls[rollCounter] + rolls[rollCounter + 1];
+			score += frameScore == 10 ? frameScore + rolls[rollCounter + 2] : frameScore;
+			rollCounter += 2;
 		}
 		return score;
 	}
