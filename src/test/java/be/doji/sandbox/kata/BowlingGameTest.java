@@ -37,11 +37,21 @@ public class BowlingGameTest {
 
 	@Test
 	void whenStrikeIsRolled_theBonusIsTheNextFramePins() {
-		game.roll(10);
+		rollStrike();
 		game.roll(3);
 		game.roll(4);
 		rollMany(17, 0);
 		assertThat(game.score()).isEqualTo(24);
+	}
+
+	@Test
+	void whenAllFramesAreStrikes_aPerfectScoreIsAchieved() {
+		rollMany(12, 10);
+		assertThat(game.score()).isEqualTo(300);
+	}
+
+	private void rollStrike() {
+		game.roll(10);
 	}
 
 	private void rollSpare() {

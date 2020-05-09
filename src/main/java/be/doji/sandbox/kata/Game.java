@@ -16,10 +16,11 @@ public class Game {
 			if(pinsKnockedOver[rollCounter] == 10) {
 				score += 10 + pinsKnockedOver[rollCounter +1 ] + pinsKnockedOver[rollCounter + 2];
 				rollCounter += 1;
+			} else {
+				int frameScore = pinsKnockedOver[rollCounter] + pinsKnockedOver[rollCounter + 1];
+				score += isSpare(frameScore) ? frameScore + pinsKnockedOver[rollCounter + 2] : frameScore;
+				rollCounter += 2;
 			}
-			int frameScore = pinsKnockedOver[rollCounter] + pinsKnockedOver[rollCounter + 1];
-			score += isSpare(frameScore) ? frameScore + pinsKnockedOver[rollCounter + 2] : frameScore;
-			rollCounter += 2;
 		}
 		return score;
 	}
